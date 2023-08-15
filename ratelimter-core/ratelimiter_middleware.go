@@ -16,7 +16,7 @@ func SetRateLimiterRedisMiddleware(redisConnectionString string) gin.HandlerFunc
 }
 
 func RateLimiterMiddleware(config RateLimiterMiddlewareConfig) gin.HandlerFunc {
-	tokenBucketRateLimiter := TokenBucketRateLimiter{BucketCapacity: config.MaxRps, RefillFrequency: config.RefillFrequency}
+	tokenBucketRateLimiter := TokenBucketRatelimiter{BucketCapacity: config.MaxRps, RefillFrequency: config.RefillFrequency}
 	return func(c *gin.Context) {
 		if config.RateLimitEnabled {
 			fmt.Println("Middleware: Before request")
