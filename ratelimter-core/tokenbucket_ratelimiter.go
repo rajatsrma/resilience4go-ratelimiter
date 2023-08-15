@@ -55,9 +55,3 @@ func (t TokenBucketRatelimiter) CheckForRateLimit(request Request) Response {
 		return Response{RequestThrottled: false, AvailableRequestQuota: int64(totalTokens)}
 	}
 }
-
-//  govo 950 => 8300
-// samsung b55e/b550 => 13750
-//  zebronics 9750 => 17500
-// yamaha yas 209 => 25250
-// jbl 5.1 deep bass => 43000
