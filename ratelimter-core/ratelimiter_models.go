@@ -12,6 +12,5 @@ type Response struct {
 type RateLimiterMiddlewareConfig struct {
 	RateLimitEnabled       bool
 	HttpHeaderRateLimitkey string
-	MaxRps                 int
-	RefillFrequency        int
+	Ratelimiter            Ratelimiter
 }

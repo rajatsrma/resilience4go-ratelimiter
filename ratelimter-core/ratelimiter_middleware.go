@@ -16,7 +16,6 @@ func SetRateLimiterRedisMiddleware(redisConnectionString string) gin.HandlerFunc
 }
 
 func RateLimiterMiddleware(config RateLimiterMiddlewareConfig) gin.HandlerFunc {
-	tokenBucketRateLimiter := TokenBucketRatelimiter{BucketCapacity: config.MaxRps, RefillFrequency: config.RefillFrequency}
 	return func(c *gin.Context) {
 		if config.RateLimitEnabled {
 			fmt.Println("Middleware: Before request")
@@ -26,7 +25,7 @@ func RateLimiterMiddleware(config RateLimiterMiddlewareConfig) gin.HandlerFunc {
 				c.AbortWithStatusJSON(400, gin.H{"error": "http headers not properly configured for request"})
 			}
 
-			rateLimitResponse := tokenBucketRateLimiter.CheckForRateLimit(
+			rateLimitResponse := config.Ratelimiter.CheckForRateLimit(
 				Request{RatelimitKey: rateLimitKey},
 			)
 			fmt.Println("ratelimitResponse", rateLimitResponse)

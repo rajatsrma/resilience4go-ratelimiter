@@ -1,5 +1,5 @@
 package ratelimtercore
 
 type Ratelimiter interface {
-	checkForRateLimit(Request) Response
+	CheckForRateLimit(Request) Response
 }
